@@ -23,7 +23,8 @@ export function startREPL() {
 
     if (command in availableCommands) {
       try {
-        availableCommands[command].callback({});
+        // execute the command
+        availableCommands[command].callback(availableCommands);
       } catch (err) {
         if (err instanceof Error) {
           console.log(`Error: ${err.message}`);
