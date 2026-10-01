@@ -1,0 +1,6 @@
+
+> pokedex@1.0.0 dev
+> npx tsc && node dist/main.js
+
+Pokedex > Unknown command
+Pokedex > Closing the Pokedex... Goodbye!
