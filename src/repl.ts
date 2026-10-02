@@ -4,7 +4,7 @@ export function startREPL() {
   const state = initState();
 
   state.interface.prompt();
-  state.interface.on("line", (input: string) => {
+  state.interface.on("line", async (input: string) => {
     const words = cleanInput(input);
     if (words.length === 0) {
       state.interface.prompt();
@@ -16,7 +16,7 @@ export function startREPL() {
     if (commandName in state.commands) {
       try {
         // execute the command
-        state.commands[commandName].callback(state);
+        await state.commands[commandName].callback(state);
       } catch (err) {
         if (err instanceof Error) {
           console.log(`Error: ${err.message}`);
