@@ -12,11 +12,12 @@ export function startREPL() {
     }
 
     const commandName = words[0];
+    const args = words.length > 1 ? words.slice(1) : [];
 
     if (commandName in state.commands) {
       try {
         // execute the command
-        await state.commands[commandName].callback(state);
+        await state.commands[commandName].callback(state, ...args);
       } catch (err) {
         if (err instanceof Error) {
           console.log(`Error: ${err.message}`);

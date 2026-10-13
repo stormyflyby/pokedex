@@ -37,6 +37,22 @@ export class PokeAPI {
     const response = await fetch(
       PokeAPI.baseURL + `location-area/${locationName}`,
     );
+
+    if (response.status == 404) {
+      return {
+        id: -1,
+        name: "not-found",
+        game_index: 0,
+        encounter_method_rates: [],
+        location: {
+          name: "",
+          url: "",
+        },
+        names: [],
+        pokemon_encounters: [],
+      };
+    }
+
     const location = await response.json();
 
     // put location in cache
